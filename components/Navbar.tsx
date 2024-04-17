@@ -1,6 +1,18 @@
+"use client";
+import { useState, useEffect } from "react";
+
 export default function Navbar() {
+  const [alert, setAlert] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 5000);
+  }, [alert]);
+  const handleClick = () => {
+    setAlert(true);
+  };
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 fixed">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -23,8 +35,8 @@ export default function Navbar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a href="prebuilt">Our PC's</a>
+            <li onClick={handleClick}>
+              <a>Our PC's</a>
             </li>
             <li>
               <a href="custom">Build your own</a>
@@ -40,8 +52,8 @@ export default function Navbar() {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li>
-            <a href="prebuilt">Our PC's</a>
+          <li onClick={handleClick}>
+            <a>Our PC's</a>
           </li>
           <li>
             <a href="custom">Build your own</a>
@@ -55,6 +67,28 @@ export default function Navbar() {
         <a className="btn" href="signup">
           Login - Signup
         </a>
+      </div>
+
+      <div
+        role="alert"
+        className={`top-20 left-0 absolute alert alert-info fade-in transition transition-all ease-in-out duration-1000 ${
+          alert ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          className="stroke-current shrink-0 w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <span>Stay Tuned - We're working on this right now! </span>
       </div>
     </div>
   );

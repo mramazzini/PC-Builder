@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <main>
@@ -18,7 +16,9 @@ export default function Home() {
               We match you with the perfect PC components for your specific
               needs, and build it for you.
             </p>
-            <button className="btn btn-primary">Get A Quote</button>
+            <a href="/custom">
+              <button className="btn btn-primary">Get A Quote</button>
+            </a>
           </div>
         </div>
       </div>
