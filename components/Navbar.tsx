@@ -12,7 +12,7 @@ export default function Navbar() {
     setAlert(true);
   };
   return (
-    <div className="navbar bg-base-100 fixed">
+    <div className="navbar bg-base-100 fixed z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,15 +39,16 @@ export default function Navbar() {
               <a>Our PC's</a>
             </li>
             <li>
-              <a href="custom">Build your own</a>
+              <a href="/custom">Build your own</a>
             </li>
             <li>
-              <a href="about">About</a>
+              <a href="/about">About</a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl" href="/">
-          Crystal Circuits PC
+        <a className="btn btn-ghost text-xl py-1" href="/">
+          {/*Logo svg*/}
+          <img src="/logo-no-background.svg" alt="Logo" className="h-full" />
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -56,15 +57,15 @@ export default function Navbar() {
             <a>Our PC's</a>
           </li>
           <li>
-            <a href="custom">Build your own</a>
+            <a href="/custom">Build your own</a>
           </li>
           <li>
-            <a href="about">About</a>
+            <a href="/about">About</a>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn" href="signup">
+        <a className="btn" href="/signup">
           Login - Signup
         </a>
       </div>

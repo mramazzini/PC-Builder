@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-
+import { mapValueToBudget } from "@/utils";
 export default function Home() {
   const [minBudget, setMinBudget] = useState<number>(40);
   const [maxBudget, setMaxBudget] = useState<number>(60);
@@ -25,14 +25,6 @@ export default function Home() {
     setMaxBudget(parseInt(event.target.value));
   };
 
-  const mapValueToBudget = (value: number): number => {
-    if (value < 50) {
-      return 500 + value * 10;
-    } else {
-      return 1000 + (value - 50) * 100;
-    }
-  };
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -47,7 +39,7 @@ export default function Home() {
       alert("Please enter a valid email");
       return;
     }
-    console.log("Email: ", email);
+    window.location.href = `/custom/questionnaire?minBudget=${minBudget}&maxBudget=${maxBudget}&email=${email}`;
   };
   return (
     <main>
@@ -75,7 +67,7 @@ export default function Home() {
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">
-                      Budget Min: {mapValueToBudget(minBudget)}
+                      Budget Min: ${mapValueToBudget(minBudget)}
                       {minBudget === 100 ? "+" : ""}
                     </span>
                   </label>
@@ -91,7 +83,7 @@ export default function Home() {
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">
-                      Budget Max: {mapValueToBudget(maxBudget)}
+                      Budget Max: ${mapValueToBudget(maxBudget)}
                       {maxBudget === 100 ? "+" : ""}
                     </span>
                   </label>

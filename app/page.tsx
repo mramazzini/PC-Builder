@@ -12,12 +12,15 @@ export default function Home() {
         <div className="hero-content text-center ">
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Let us build your PC...</h1>
-            <p className="mb-5">
+            <p className="mb-5 text-xl">
               We match you with the perfect PC components for your specific
-              needs, and build it for you.
+              needs, and build it for you - all within your budget.
             </p>
-            <a href="/custom">
+            <a href="/custom" className="mr-2">
               <button className="btn btn-primary">Get A Quote</button>
+            </a>
+            <a href="/prebuilt" className="ml-2">
+              <button className="btn btn-accent">Top Seller's</button>
             </a>
           </div>
         </div>

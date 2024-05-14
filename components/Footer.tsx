@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="footer footer-center p-4 bg-base-300 text-base-content">
       <aside>
-        <p>Copyright © 2024 - All right reserved by Crystal Circuit PC LLC</p>
+        <p>Copyright © 2024 - All right reserved by Blazing Build's LLC</p>
       </aside>
     </footer>
   );
