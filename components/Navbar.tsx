@@ -36,7 +36,7 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li onClick={handleClick}>
-              <a>Our PC's</a>
+              <a>Our PC&apos;s</a>
             </li>
             <li>
               <a href="/custom">Build your own</a>
@@ -54,7 +54,7 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li onClick={handleClick}>
-            <a>Our PC's</a>
+            <a>Our PC&apos;s</a>
           </li>
           <li>
             <a href="/custom">Build your own</a>
@@ -89,7 +89,7 @@ export default function Navbar() {
             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           ></path>
         </svg>
-        <span>Stay Tuned - We're working on this right now! </span>
+        <span>Stay Tuned - We&apos;re working on this right now! </span>
       </div>
     </div>
   );

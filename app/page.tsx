@@ -20,7 +20,7 @@ export default function Home() {
               <button className="btn btn-primary">Get A Quote</button>
             </a>
             <a href="/prebuilt" className="ml-2">
-              <button className="btn btn-accent">Top Seller's</button>
+              <button className="btn btn-accent">Top Seller&apos;s</button>
             </a>
           </div>
         </div>

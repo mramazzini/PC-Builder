@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { mapValueToBudget } from "@/utils";
-
+import Image from "next/image";
 export default function Page() {
   const [data, setData] = useState<{
     minBudget: number;
@@ -258,8 +258,10 @@ export default function Page() {
             <h2 className="text-3xl font-bold text-center">Your Preferences</h2>
           </div>
           <p className="py-6 text-center">
-            Please select the options that best suit your needs.{" "}
-            <span className="font-bold">Don't worry if you're not sure! </span>{" "}
+            Please select the options that best suit your needs.
+            <span className="font-bold">
+              Don&apos;t worry if you&apos;re not sure!
+            </span>
             Answer as many questions as you can.
           </p>
           <div className="divider" />
