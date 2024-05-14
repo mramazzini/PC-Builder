@@ -671,6 +671,7 @@ export default function Page() {
               ></textarea>
             </label>
           </div>
+          <div className="divider" />
           {/* Submit button */}
           <div className="form-row justify-center">
             <button
@@ -684,168 +685,168 @@ export default function Page() {
             >
               Submit
             </button>
-
-            <dialog id="confirm_submit_modal" className="modal">
-              <div className="modal-box w-11/12 max-w-5xl">
-                <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h1 className="text-3xl font-bold text-center">
-                  Confirm Submission
-                </h1>
-                <h2 className="text-xl font-bold text-center">
-                  Please review your submission before confirming.
-                </h2>
-                <div className="divider" />
-                <div className="form-row flex flex-row justify-between pb-6">
-                  <div className="form-control w-full max-w-xs">
-                    <div className="label">
-                      <span className="label-text">Email</span>
-                    </div>
-                    <p className="border border-primary rounded-xl p-3 w-full max-w-xs">
-                      {data.email}
-                    </p>
-                  </div>
-                  <div className="form-control w-full max-w-xs">
-                    <div className="label">
-                      <span className="label-text">Budget</span>
-                    </div>
-                    <input
-                      value={`$ ${data.minBudget} - $ ${data.maxBudget}`}
-                      className="input input-bordered input-primary w-full max-w-xs"
-                    />
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="form-row  w-full">
-                  <div className="form-control w-full max-w-xs">
-                    <div className="label">
-                      <span className="label-text font-bold text-xl">
-                        This PC will be used for:
-                      </span>
-                    </div>
-                    <ul className="flex flex-col ">
-                      {Object.entries(data.usage).map(([key, value]) => {
-                        return value ? (
-                          <li key={key}>
-                            <span className="label-text">
-                              - {camelCaseToTitleCase(key)}
-                            </span>
-                          </li>
-                        ) : null;
-                      })}
-                    </ul>
-                  </div>
-                  <div className="divider divider-horizontal" />
-                  <div className="form-control grow">
-                    <div className="label px-0">
-                      <span className="label-text font-bold text-xl">
-                        Other activities it will be used for:
-                      </span>
-                    </div>
-                    <p className="border border-accent p-2 rounded-xl min-h-24">
-                      {data.otherUsage}
-                    </p>
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="form-row  justify-between">
-                  <div className="form-control w-full max-w-xs">
-                    <div className="label ">
-                      <span className="label-text font-bold text-xl">
-                        Performance Specifications:
-                      </span>
-                    </div>
-                    <ul className="flex flex-col ">
-                      {Object.entries(data.performance).map(([key, value]) => {
-                        return value ? (
-                          <li key={key}>
-                            <span className="label-text">
-                              - {camelCaseToTitleCase(key)}
-                            </span>
-                          </li>
-                        ) : null;
-                      })}
-                    </ul>
-                  </div>
-                  <div className="divider divider-horizontal " />
-                  <div className="form-control grow">
-                    <div className="label px-0">
-                      <span className="label-text font-bold text-xl">
-                        Other performance requirements:
-                      </span>
-                    </div>
-                    <p className="border border-accent p-2 rounded-xl min-h-24">
-                      {data.otherPerformance}
-                    </p>
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="form-row  justify-between">
-                  <div className="form-control w-full max-w-xs">
-                    <div className="label p-0">
-                      <span className="label-text font-bold text-xl">
-                        Aesthetic Preferences:
-                      </span>
-                    </div>
-                    <ul className="flex flex-col ">
-                      {Object.entries(data.aesthetic).map(([key, value]) => {
-                        return value ? (
-                          <li key={key}>
-                            <span className="label-text">
-                              - {camelCaseToTitleCase(key)}
-                            </span>
-                          </li>
-                        ) : null;
-                      })}
-                    </ul>
-                  </div>
-                  <div className="divider divider-horizontal" />
-                  <div className="form-control grow">
-                    <div className="label px-0">
-                      <span className="label-text font-bold text-xl">
-                        Other aesthetic preferences:
-                      </span>
-                    </div>
-                    <p className="border border-accent p-2 rounded-xl min-h-24">
-                      {data.otherAesthetic}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="divider" />
-                <div className="form-row">
-                  <div className="form-control grow">
-                    <div className="label">
-                      <span className="label-text font-bold text-xl">
-                        Other preferences:
-                      </span>
-                    </div>
-                    <p className="border border-accent p-2 rounded-xl min-h-24">
-                      {data.other}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="modal-action">
-                  <button className="btn btn-secondary">Confirm</button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleShowModal(false);
-                    }}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </dialog>
           </div>
         </form>
+
+        <dialog id="confirm_submit_modal" className="modal">
+          <div className="modal-box w-11/12 max-w-5xl">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
+              </button>
+            </form>
+            <h1 className="text-3xl font-bold text-center">
+              Confirm Submission
+            </h1>
+            <h2 className="text-xl font-bold text-center">
+              Please review your submission before confirming.
+            </h2>
+            <div className="divider" />
+            <div className="form-row flex flex-row justify-between pb-6">
+              <div className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">Email</span>
+                </div>
+                <p className="border border-primary rounded-xl p-3 w-full max-w-xs">
+                  {data.email}
+                </p>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">Budget</span>
+                </div>
+                <input
+                  value={`$ ${data.minBudget} - $ ${data.maxBudget}`}
+                  className="input input-bordered input-primary w-full max-w-xs"
+                />
+              </div>
+            </div>
+            <div className="divider" />
+            <div className="form-row  w-full">
+              <div className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text font-bold text-xl">
+                    This PC will be used for:
+                  </span>
+                </div>
+                <ul className="flex flex-col ">
+                  {Object.entries(data.usage).map(([key, value]) => {
+                    return value ? (
+                      <li key={key}>
+                        <span className="label-text">
+                          - {camelCaseToTitleCase(key)}
+                        </span>
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              </div>
+              <div className="divider divider-horizontal" />
+              <div className="form-control grow">
+                <div className="label px-0">
+                  <span className="label-text font-bold text-xl">
+                    Other activities it will be used for:
+                  </span>
+                </div>
+                <p className="border border-accent p-2 rounded-xl min-h-24">
+                  {data.otherUsage}
+                </p>
+              </div>
+            </div>
+            <div className="divider" />
+            <div className="form-row  justify-between">
+              <div className="form-control w-full max-w-xs">
+                <div className="label ">
+                  <span className="label-text font-bold text-xl">
+                    Performance Specifications:
+                  </span>
+                </div>
+                <ul className="flex flex-col ">
+                  {Object.entries(data.performance).map(([key, value]) => {
+                    return value ? (
+                      <li key={key}>
+                        <span className="label-text">
+                          - {camelCaseToTitleCase(key)}
+                        </span>
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              </div>
+              <div className="divider divider-horizontal " />
+              <div className="form-control grow">
+                <div className="label px-0">
+                  <span className="label-text font-bold text-xl">
+                    Other performance requirements:
+                  </span>
+                </div>
+                <p className="border border-accent p-2 rounded-xl min-h-24">
+                  {data.otherPerformance}
+                </p>
+              </div>
+            </div>
+            <div className="divider" />
+            <div className="form-row  justify-between">
+              <div className="form-control w-full max-w-xs">
+                <div className="label p-0">
+                  <span className="label-text font-bold text-xl">
+                    Aesthetic Preferences:
+                  </span>
+                </div>
+                <ul className="flex flex-col ">
+                  {Object.entries(data.aesthetic).map(([key, value]) => {
+                    return value ? (
+                      <li key={key}>
+                        <span className="label-text">
+                          - {camelCaseToTitleCase(key)}
+                        </span>
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              </div>
+              <div className="divider divider-horizontal" />
+              <div className="form-control grow">
+                <div className="label px-0">
+                  <span className="label-text font-bold text-xl">
+                    Other aesthetic preferences:
+                  </span>
+                </div>
+                <p className="border border-accent p-2 rounded-xl min-h-24">
+                  {data.otherAesthetic}
+                </p>
+              </div>
+            </div>
+
+            <div className="divider" />
+            <div className="form-row">
+              <div className="form-control grow">
+                <div className="label">
+                  <span className="label-text font-bold text-xl">
+                    Other preferences:
+                  </span>
+                </div>
+                <p className="border border-accent p-2 rounded-xl min-h-24">
+                  {data.other}
+                </p>
+              </div>
+            </div>
+
+            <div className="modal-action">
+              <button className="btn btn-secondary">Confirm</button>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleShowModal(false);
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </dialog>
       </div>
     </main>
   );
