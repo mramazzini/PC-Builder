@@ -855,7 +855,7 @@ export default function Page() {
               <button
                 className="btn btn-secondary"
                 onClick={async (e) => {
-                  const entry = {
+                  const entry: Prisma.QuestionnaireEntryCreateInput = {
                     email: data.email,
                     minBudget: data.minBudget,
                     maxBudget: data.maxBudget,
