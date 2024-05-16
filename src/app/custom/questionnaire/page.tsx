@@ -7,7 +7,7 @@ import {
 } from "@/src/lib/utils";
 import Image from "next/image";
 import { createQuestionnaireEntry } from "@/src/lib/actions/db/create.actions";
-import { Prisma, QuestionnaireEntry } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { sendQuestionnaireEmail } from "@/src/lib/actions/email/send.actions";
 import { type } from "os";
 
