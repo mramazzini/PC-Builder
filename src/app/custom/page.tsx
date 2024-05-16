@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { mapValueToBudget } from "@/utils";
+import { mapValueToBudget } from "@/src/lib/utils";
 export default function Home() {
   const [minBudget, setMinBudget] = useState<number>(40);
   const [maxBudget, setMaxBudget] = useState<number>(60);

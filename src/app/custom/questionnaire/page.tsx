@@ -1,7 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-import { mapValueToBudget } from "@/utils";
+import {
+  mapValueToBudget,
+  keysOfTrueBooleans,
+  camelCaseToTitleCase,
+} from "@/src/lib/utils";
 import Image from "next/image";
+import { createQuestionnaireEntry } from "@/src/lib/actions/db/create.actions";
+import { Prisma, QuestionnaireEntry } from "@prisma/client";
+import { sendQuestionnaireEmail } from "@/src/lib/actions/email/send.actions";
+import { type } from "os";
+
 export default function Page() {
   const [data, setData] = useState<{
     minBudget: number;
@@ -136,6 +145,17 @@ export default function Page() {
       alert("Please select at least one aesthetic option");
       return false;
     }
+    // check if email is a valid email
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(data.email)) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+    if (data.minBudget > data.maxBudget) {
+      alert("Minimum budget cannot be greater than maximum budget");
+      return false;
+    }
+
     return true;
   };
 
@@ -145,6 +165,9 @@ export default function Page() {
   ) => {
     let value = parseInt(event.target.value.replace("$ ", ""));
 
+    if (event.target.value.replace("$ ", "") === "") {
+      value = 0;
+    }
     if (isNaN(value)) {
       return;
     }
@@ -196,11 +219,6 @@ export default function Page() {
     }
   };
 
-  const camelCaseToTitleCase = (str: string) => {
-    return str.replace(/([A-Z])/g, " $1").replace(/^./, function (str) {
-      return str.toUpperCase();
-    });
-  };
   return (
     <main>
       <div className="min-h-screen bg-base-200 flex py-32 flex-col items-center">
@@ -258,10 +276,10 @@ export default function Page() {
             <h2 className="text-3xl font-bold text-center">Your Preferences</h2>
           </div>
           <p className="py-6 text-center">
-            Please select the options that best suit your needs.
+            Please select the options that best suit your needs.{" "}
             <span className="font-bold">
               Don&apos;t worry if you&apos;re not sure!
-            </span>
+            </span>{" "}
             Answer as many questions as you can.
           </p>
           <div className="divider" />
@@ -834,7 +852,29 @@ export default function Page() {
             </div>
 
             <div className="modal-action">
-              <button className="btn btn-secondary">Confirm</button>
+              <button
+                className="btn btn-secondary"
+                onClick={async (e) => {
+                  const entry: Prisma.QuestionnaireEntryCreateInput = {
+                    email: data.email,
+                    minBudget: data.minBudget,
+                    maxBudget: data.maxBudget,
+                    usage: keysOfTrueBooleans(data.usage),
+                    usageDetails: data.otherUsage,
+                    performance: keysOfTrueBooleans(data.performance),
+                    performanceDetails: data.otherPerformance,
+                    aesthetics: keysOfTrueBooleans(data.aesthetic),
+                    aestheticsDetails: data.otherAesthetic,
+                    other: data.other,
+                  };
+                  const ok = await createQuestionnaireEntry(entry);
+                  if (ok) {
+                    sendQuestionnaireEmail(ok);
+                  }
+                }}
+              >
+                Confirm
+              </button>
               <button
                 className="btn btn-primary"
                 onClick={(e) => {
