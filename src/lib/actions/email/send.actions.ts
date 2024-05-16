@@ -2,6 +2,7 @@
 import { QuestionnaireEntry } from "@prisma/client";
 import AWS from "aws-sdk";
 import { camelCaseToTitleCase } from "../../utils";
+import { resolve } from "path";
 // Set up AWS SES
 const ses = new AWS.SES({
   region: "us-east-2", // e.g., 'us-east-1'
@@ -9,7 +10,9 @@ const ses = new AWS.SES({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });
 
-export const sendQuestionnaireEmail = async (data: QuestionnaireEntry) => {
+export const sendQuestionnaireEmail = async (
+  data: QuestionnaireEntry
+): Promise<boolean> => {
   // Define email parameters
   data.usage = data.usage
     .split(", ")
@@ -89,11 +92,15 @@ export const sendQuestionnaireEmail = async (data: QuestionnaireEntry) => {
   };
 
   // Send the email
-  ses.sendEmail(params, (err, data) => {
-    if (err) {
-      console.error("Error sending email:", err);
-    } else {
-      console.log("Email sent successfully:", data);
-    }
+  return new Promise((resolve) => {
+    ses.sendEmail(params, async (err, data) => {
+      if (err) {
+        console.error("Error sending email:", err);
+        resolve(false);
+      } else {
+        console.log("Email sent successfully:", data);
+        resolve(true);
+      }
+    });
   });
 };

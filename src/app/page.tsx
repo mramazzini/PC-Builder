@@ -8,7 +8,7 @@ export default function Home() {
             "url(https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
         }}
       >
-        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-overlay bg-opacity-60 "></div>
         <div className="hero-content text-center ">
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Let us build your PC...</h1>

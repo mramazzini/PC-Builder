@@ -69,8 +69,9 @@ export default function Page() {
     otherAesthetic: "",
     other: "",
   });
-  // get the data from the URL
-  const [confirmOpened, setConfirmOpened] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const minBudget = urlParams.get("minBudget");
@@ -221,10 +222,10 @@ export default function Page() {
 
   return (
     <main>
-      <div className="min-h-screen bg-base-200 flex py-32 flex-col items-center">
+      <div className="min-h-screen bg-base-200 flex py-32 flex-col items-center ">
         <div className="hero-overlay bg-opacity-60"></div>
         <form className="w-3/4 bg-base-300 p-10 border border-secondary rounded-3xl">
-          <h1 className="text-5xl font-bold text-center">
+          <h1 className="text-5xl font-bold text-center ">
             Make the perfect build!
           </h1>
           <p className="py-6 text-center">
@@ -850,41 +851,75 @@ export default function Page() {
                 </p>
               </div>
             </div>
-
-            <div className="modal-action">
-              <button
-                className="btn btn-secondary"
-                onClick={async (e) => {
-                  const entry: Prisma.QuestionnaireEntryCreateInput = {
-                    email: data.email,
-                    minBudget: data.minBudget,
-                    maxBudget: data.maxBudget,
-                    usage: keysOfTrueBooleans(data.usage),
-                    usageDetails: data.otherUsage,
-                    performance: keysOfTrueBooleans(data.performance),
-                    performanceDetails: data.otherPerformance,
-                    aesthetics: keysOfTrueBooleans(data.aesthetic),
-                    aestheticsDetails: data.otherAesthetic,
-                    other: data.other,
-                  };
-                  const ok = await createQuestionnaireEntry(entry);
-                  if (ok) {
-                    sendQuestionnaireEmail(ok);
-                  }
-                }}
-              >
-                Confirm
-              </button>
-              <button
-                className="btn btn-primary"
-                onClick={(e) => {
-                  e.preventDefault();
-                  toggleShowModal(false);
-                }}
-              >
-                Close
-              </button>
+            <div className="divider" />
+            {/* Agree to terms */}
+            <div className="form-row">
+              <div className="form-control">
+                <label className="cursor-pointer label">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-accent mr-2"
+                    onChange={(e) => setAcceptedTerms(e.target.checked)}
+                  />
+                  <span className="label-text font-bold">
+                    I agree to be contacted by Blazing Builds for further
+                    details at my email address.
+                  </span>
+                </label>
+              </div>
             </div>
+            {!loading ? (
+              <div className="modal-action">
+                <button
+                  className="btn btn-secondary"
+                  disabled={!acceptedTerms}
+                  onClick={async (e) => {
+                    const entry: Prisma.QuestionnaireEntryCreateInput = {
+                      email: data.email,
+                      minBudget: data.minBudget,
+                      maxBudget: data.maxBudget,
+                      usage: keysOfTrueBooleans(data.usage),
+                      usageDetails: data.otherUsage,
+                      performance: keysOfTrueBooleans(data.performance),
+                      performanceDetails: data.otherPerformance,
+                      aesthetics: keysOfTrueBooleans(data.aesthetic),
+                      aestheticsDetails: data.otherAesthetic,
+                      other: data.other,
+                    };
+                    setLoading(true);
+                    const ok = await createQuestionnaireEntry(entry);
+                    if (ok) {
+                      const emailOk = await sendQuestionnaireEmail(ok);
+                      if (emailOk) {
+                        window.location.href = `/status/${ok.id}`;
+                      } else {
+                        alert(
+                          "Something went wrong. Is your email address a valid email?"
+                        );
+                        setLoading(false);
+                      }
+                    } else {
+                      setLoading(false);
+                    }
+                  }}
+                >
+                  Confirm
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleShowModal(false);
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+            ) : (
+              <div className="modal-action">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            )}
           </div>
         </dialog>
       </div>

@@ -29,9 +29,8 @@ model Order {
   status     String
   totalPrice Float
   items      OrderItem[]
-
-  userId Int?
-  User   User? @relation(fields: [userId], references: [id])
+  userId     Int?
+  User       User?       @relation(fields: [userId], references: [id])
 }
 
 // Describe a single item in an order 
@@ -57,7 +56,8 @@ model User {
 }
 
 model QuestionnaireEntry {
-  id                 Int    @id @default(autoincrement())
+  //id is uuid to make it harder to guess
+  id                 String @id @default(uuid())
   email              String
   minBudget          Int
   maxBudget          Int

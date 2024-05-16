@@ -22,3 +22,7 @@ export const camelCaseToTitleCase = (str: string) => {
     return str.toUpperCase();
   });
 };
+
+export const idToCode = (id: number): string => {
+  return id.toString(36).toUpperCase();
+};

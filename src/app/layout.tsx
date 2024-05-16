@@ -22,7 +22,7 @@ export default function RootLayout({
         <title>My Page Title</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} text-white`}>
         <Navbar />
         {children}
         <Footer />
