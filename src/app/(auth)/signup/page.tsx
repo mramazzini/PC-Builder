@@ -1,4 +1,5 @@
 import SignupForm from "@/src/components/SignupForm";
+import Link from "next/link";
 export const signUpPage = () => {
   return (
     <main>
@@ -13,7 +14,12 @@ export const signUpPage = () => {
         <div className="hero bg-base-200 p-10">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Create an Account!</h1>
+              <h1 className="text-5xl font-bold mb-2">Create an Account!</h1>
+              <Link href="/login">
+                <h3 className="text-accent hover:underline font-bold">
+                  Or Login here
+                </h3>
+              </Link>
               <div className="divider"></div>
               <p className="py-6">
                 Keep track of all your orders and get exclusive discounts by
