@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { signup } from "../lib/actions/db/auth/signup.actions";
+
 const SignupForm = () => {
   const [error, setError] = useState("");
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

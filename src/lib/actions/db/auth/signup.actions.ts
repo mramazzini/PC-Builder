@@ -3,13 +3,14 @@ import { Prisma, User, PrismaClient } from "@prisma/client";
 import { createUser } from "../create.actions";
 import { validateEmail, validateSecureString } from "@/src/lib/utils";
 import bcrypt from "bcrypt";
+import { generateToken } from "@/src/lib/auth";
 const db = new PrismaClient();
 
 export const signup = async (data: {
   email: string;
   password: string;
   confirmPassword: string;
-}): Promise<User> => {
+}): Promise<string> => {
   console.log("createUser");
 
   const { email, password, confirmPassword } = data;
@@ -37,9 +38,6 @@ export const signup = async (data: {
     password: hashedPassword,
   });
 
-  return newUser;
-
-  //   await addDefaultContentPacksToUser(newUser.id);
-  //   const token = generateToken(newUser.id);
-  //   return token;
+  const token = generateToken(newUser.id);
+  return token;
 };
