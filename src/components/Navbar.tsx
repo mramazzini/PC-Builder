@@ -1,15 +1,31 @@
 "use client";
 import { useState, useEffect } from "react";
+import { destroySession, verifyToken } from "../lib/auth";
+import Link from "next/link";
 
 export default function Navbar() {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [alert, setAlert] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setAlert(false);
     }, 5000);
   }, [alert]);
+  useEffect(() => {
+    const checkToken = async () => {
+      const isAuthenticated = await verifyToken();
+      setLoggedIn(isAuthenticated);
+    };
+    checkToken();
+  }, []);
   const handleClick = () => {
     setAlert(true);
+  };
+  const handleLogout = async () => {
+    await destroySession();
+    setLoggedIn(false);
+    //reload page so protected routes redirect
+    window.location.reload();
   };
   return (
     <div className="navbar bg-base-100 fixed z-50">
@@ -65,9 +81,38 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn" href="/signup">
-          Login - Signup
-        </a>
+        {loggedIn ? (
+          <div className="flex-none">
+            <ul className="menu menu-horizontal px-1">
+              <li>
+                <Link href="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <details>
+                  <summary>Account</summary>
+                  <ul className="p-2 bg-base-100 rounded-t-none">
+                    <li>
+                      <Link href="/account">Profile</Link>
+                    </li>
+                    <li>
+                      <Link href="/orders">Order History</Link>
+                    </li>
+                    <li>
+                      <Link href="/contact">Support</Link>
+                    </li>
+                    <li>
+                      <div onClick={() => handleLogout()}>Logout</div>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <a className="btn" href="/login">
+            Login - Signup
+          </a>
+        )}
       </div>
 
       <div

@@ -13,6 +13,9 @@ const LoginForm = () => {
         password: formData.get("password") as string,
       });
       setError("");
+
+      // Redirect to dashboard
+      window.location.href = "/dashboard";
     } catch (error: any) {
       setError(error.message);
     }

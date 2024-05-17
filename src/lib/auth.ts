@@ -1,3 +1,4 @@
+"use server";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
@@ -19,6 +20,12 @@ export const generateToken = async (id: number) => {
   });
 
   return token;
+};
+
+export const destroySession = async () => {
+  cookies().set("token", "", {
+    maxAge: 0,
+  });
 };
 
 export const verifyToken = async () => {
