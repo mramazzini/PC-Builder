@@ -1,6 +1,6 @@
 import SignupForm from "@/src/components/SignupForm";
 import Link from "next/link";
-export const signUpPage = () => {
+export default function Home() {
   return (
     <main>
       <div
@@ -37,6 +37,4 @@ export const signUpPage = () => {
       </div>
     </main>
   );
-};
-
-export default signUpPage;
+}

@@ -1,7 +1,7 @@
 import LoginForm from "@/src/components/LoginForm";
 import Link from "next/link";
 
-const loginPage = () => {
+export default function Home() {
   return (
     <main>
       <div
@@ -38,6 +38,4 @@ const loginPage = () => {
       </div>
     </main>
   );
-};
-
-export default loginPage;
+}
