@@ -26,3 +26,21 @@ export const camelCaseToTitleCase = (str: string) => {
 export const idToCode = (id: number): string => {
   return id.toString(36).toUpperCase();
 };
+
+export const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  return emailRegex.test(email);
+};
+
+export const validateSecureString = (
+  str: string,
+  confirmStr: string
+): string => {
+  if (str !== confirmStr) {
+    return "Passwords do not match";
+  }
+  if (str.length < 8) {
+    return "Password must be at least 8 characters";
+  }
+  return "";
+};
