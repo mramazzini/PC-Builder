@@ -1,34 +1,5 @@
-"use client";
-
-import { validateEmail, validateSecureString } from "@/src/lib/utils";
-
-const { useState } = require("react");
-export const signup = (email: string, password: string) => {
-  const [error, setError] = useState("");
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email");
-    if (!email) {
-      setError("Please enter an email");
-      return;
-    }
-    if (validateEmail(email.toString()) === false) {
-      setError("Please enter a valid email");
-      return;
-    }
-    const password = formData.get("password") || "";
-    const confirmPassword = formData.get("confirmPassword") || "";
-    const res = validateSecureString(
-      password.toString(),
-      confirmPassword.toString()
-    );
-    if (res) {
-      setError(res);
-      return;
-    }
-    setError("");
-  };
+import SignupForm from "@/src/components/SignupForm";
+export const signUpPage = () => {
   return (
     <main>
       <div
@@ -49,55 +20,11 @@ export const signup = (email: string, password: string) => {
                 creating an account.
               </p>
             </div>
+
             <div className="divider lg:divider-horizontal"></div>
+
             <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <form className="card-body" onSubmit={handleSubmit}>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="input input-info"
-                    name="email"
-                    required
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="input input-info"
-                    name="password"
-                    required
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Confirm Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    className="input input-info"
-                    name="confirmPassword"
-                    required
-                  />
-                </div>
-                <div className="divider"></div>
-                {error && <div className="text-red-500">{error}</div>}
-                <div className="form-control mt-6">
-                  <button className="btn btn-primary" type="submit">
-                    Get Started
-                  </button>
-                </div>
-              </form>
+              <SignupForm />
             </div>
           </div>
         </div>
@@ -106,4 +33,4 @@ export const signup = (email: string, password: string) => {
   );
 };
 
-export default signup;
+export default signUpPage;
