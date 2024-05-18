@@ -1,16 +1,17 @@
 "use server";
 import { Prisma, User, PrismaClient } from "@prisma/client";
 import { createUser } from "../create.actions";
-import { validateEmail, validateSecureString } from "@/src/lib/utils";
+import { validateEmail, validateSecureString } from "@/src/lib/utils/helpers";
 import bcrypt from "bcrypt";
-import { generateToken } from "@/src/lib/auth";
+import { generateToken } from "@/src/lib/utils/auth";
+import { AuthResult } from "@/src/lib/utils/types";
 const db = new PrismaClient();
 
 export const signup = async (data: {
   email: string;
   password: string;
   confirmPassword: string;
-}): Promise<string> => {
+}): Promise<AuthResult> => {
   console.log("createUser");
 
   const { email, password, confirmPassword } = data;
@@ -20,14 +21,18 @@ export const signup = async (data: {
     },
   });
   if (user) {
-    throw new Error(`User already exists`);
+    return AuthResult.UserAlreadyExists;
   }
   if (!validateEmail(email)) {
-    throw new Error("Invalid email");
+    return AuthResult.UserAlreadyExists;
   }
-  const passwordError = validateSecureString(password, confirmPassword);
-  if (passwordError) {
-    throw new Error(passwordError);
+  const passwordError: AuthResult = validateSecureString(
+    password,
+    confirmPassword
+  );
+
+  if (passwordError !== AuthResult.Success) {
+    return passwordError;
   }
 
   const saltRounds = 10;
@@ -38,6 +43,6 @@ export const signup = async (data: {
     password: hashedPassword,
   });
 
-  const token = generateToken(newUser.id);
-  return token;
+  generateToken(newUser.id);
+  return AuthResult.Success;
 };

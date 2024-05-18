@@ -1,3 +1,5 @@
+import { AuthResult } from "./types";
+
 export const mapValueToBudget = (value: number): number => {
   if (value < 50) {
     return 500 + value * 10;
@@ -35,12 +37,12 @@ export const validateEmail = (email: string): boolean => {
 export const validateSecureString = (
   str: string,
   confirmStr: string
-): string => {
+): AuthResult => {
   if (str !== confirmStr) {
-    return "Passwords do not match";
+    return AuthResult.PasswordsDoNotMatch;
   }
   if (str.length < 8) {
-    return "Password must be at least 8 characters";
+    return AuthResult.PasswordTooShort;
   }
-  return "";
+  return AuthResult.Success;
 };

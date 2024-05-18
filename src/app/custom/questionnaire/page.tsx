@@ -4,7 +4,7 @@ import {
   mapValueToBudget,
   keysOfTrueBooleans,
   camelCaseToTitleCase,
-} from "@/src/lib/utils";
+} from "@/src/lib/utils/helpers";
 import Image from "next/image";
 import { createQuestionnaireEntry } from "@/src/lib/actions/db/create.actions";
 import { Prisma } from "@prisma/client";

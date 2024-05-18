@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { signup } from "../lib/actions/db/auth/signup.actions";
+import { AuthResult } from "../lib/utils/types";
 
 const SignupForm = () => {
   const [error, setError] = useState("");
@@ -8,15 +9,26 @@ const SignupForm = () => {
     event.preventDefault();
     try {
       const formData = new FormData(event.currentTarget);
-      await signup({
+      const err = await signup({
         email: formData.get("email") as string,
         password: formData.get("password") as string,
         confirmPassword: formData.get("confirmPassword") as string,
       });
 
+      if (err != AuthResult.Success) {
+        console.log(err);
+
+        setError(err);
+        return;
+      }
+
       setError("");
+
+      // Redirect to dashboard
+      window.location.href = "/dashboard";
     } catch (error: any) {
-      setError(error.message);
+      console.log(error);
+      setError("Something went wrong. Please try again later.");
     }
   };
 
@@ -64,7 +76,7 @@ const SignupForm = () => {
       {error && <div className="text-red-500">{error}</div>}
       <div className="form-control mt-6">
         <button className="btn btn-primary" type="submit">
-          Get Started
+          Create your account
         </button>
       </div>
     </form>

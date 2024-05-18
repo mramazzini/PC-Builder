@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { destroySession, verifyToken } from "../lib/auth";
+import { destroySession, verifyToken } from "../lib/utils/auth";
 import Link from "next/link";
 
 export default function Navbar() {

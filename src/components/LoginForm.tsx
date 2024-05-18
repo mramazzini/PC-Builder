@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { login } from "../lib/actions/db/auth/login.actions";
+import { AuthResult } from "../lib/utils/types";
 
 const LoginForm = () => {
   const [error, setError] = useState("");
@@ -8,16 +9,25 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       const formData = new FormData(event.currentTarget);
-      await login({
+      const err = await login({
         email: formData.get("email") as string,
         password: formData.get("password") as string,
       });
+
+      if (err != AuthResult.Success) {
+        console.log(err);
+
+        setError(err);
+        return;
+      }
+
       setError("");
 
       // Redirect to dashboard
       window.location.href = "/dashboard";
     } catch (error: any) {
-      setError(error.message);
+      console.log(error);
+      setError("Something went wrong. Please try again later.");
     }
   };
 
