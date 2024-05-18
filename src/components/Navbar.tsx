@@ -125,7 +125,12 @@ export default function Navbar() {
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1 ">
               <li>
-                <Link href="/dashboard">Dashboard</Link>
+                <Link
+                  href="/dashboard"
+                  className="border border-base-100 hover:border-accent bg-accent hover:bg-accent-100 text-white"
+                >
+                  Dashboard
+                </Link>
               </li>
               <li>
                 <details>
