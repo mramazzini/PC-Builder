@@ -4,7 +4,7 @@ import { QStatus, QuestionnaireEntry } from "@prisma/client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-export default () => {
+const StatusBody = () => {
   // get the confirmation code from the query string
   const params = useSearchParams();
   const confirmationCode = params.get("code");
@@ -99,3 +99,4 @@ export default () => {
     </div>
   );
 };
+export default StatusBody;
