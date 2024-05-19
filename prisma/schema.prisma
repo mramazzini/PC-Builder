@@ -47,10 +47,9 @@ model OrderItem {
 // User schema
 model User {
   id                 Int                  @id @default(autoincrement())
-
   email              String               @unique
   password           String
-firstName          String? 
+  firstName          String? 
   lastName           String?
   orders             Order[]
   questionnaireEntry QuestionnaireEntry[]
@@ -71,4 +70,5 @@ model QuestionnaireEntry {
   other              String
   User               User?  @relation(fields: [userId], references: [id]) //optional User
   userId             Int?
+  status             String
 }

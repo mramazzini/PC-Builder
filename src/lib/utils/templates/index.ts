@@ -2,12 +2,12 @@
 import fs from "fs";
 import path from "path";
 
-export async function verifyEmail(name: string) {
+export async function verifyEmail(verificationCode: string) {
   const template = fs.readFileSync(
     path.resolve(__dirname, "./verifyEmail.html"),
     "utf8"
   );
-  return template.replace("${name}", name);
+  return template.replace("${verificationCode}", verificationCode);
 }
 
 export async function questionnaireEntryEmail(code: string) {
