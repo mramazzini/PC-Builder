@@ -55,7 +55,7 @@ export const sendQuestionnaireEmail = async (
 
     <div style="width: 100%; height: 0px; border: solid 1px rgba(229, 231, 235, 0.05); background-color: rgba(229, 231, 235, 0.05); border-radius: 10px;"></div>
 
-    <p>Here is your confirmation code: <strong style="color: #00daff;">1A3j5sI</strong></p>
+    <p>Here is your confirmation code: <strong style="color: #00daff;">${data.id}</strong></p>
     <p>You can check the status of your query at <a href="https://blazingbuilds.com/status" style="color: #00daff;">https://blazingbuilds.com/status</a></p>
 
     <div style="width: 100%; height: 0px; border: solid 1px rgba(229, 231, 235, 0.05); background-color: rgba(229, 231, 235, 0.05); border-radius: 10px; margin: 10px 0;"></div>

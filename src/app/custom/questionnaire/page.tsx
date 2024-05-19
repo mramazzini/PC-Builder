@@ -887,18 +887,18 @@ export default function Page() {
                       other: data.other,
                     };
                     setLoading(true);
-                    const ok = await createQuestionnaireEntry(entry);
-                    if (ok) {
+                    try {
+                      const ok = await createQuestionnaireEntry(entry);
                       const emailOk = await sendQuestionnaireEmail(ok);
                       if (emailOk) {
-                        window.location.href = `/status/${ok.id}`;
+                        window.location.href = `/status?page=${ok.id}`;
                       } else {
-                        alert(
-                          "Something went wrong. Is your email address a valid email?"
-                        );
+                        alert("An error occurred. Please try again later.");
                         setLoading(false);
                       }
-                    } else {
+                    } catch (error) {
+                      console.error(error);
+                      alert("An error occurred. Please try again later.");
                       setLoading(false);
                     }
                   }}

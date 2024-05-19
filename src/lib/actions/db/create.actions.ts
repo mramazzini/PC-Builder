@@ -7,6 +7,7 @@ export const createQuestionnaireEntry = async (
   data: Prisma.QuestionnaireEntryCreateInput
 ): Promise<QuestionnaireEntry> => {
   "use server";
+
   console.log("createQuestionnaireEntry");
   return db.questionnaireEntry.create({
     data,

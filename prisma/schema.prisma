@@ -55,9 +55,15 @@ model User {
   questionnaireEntry QuestionnaireEntry[]
 }
 
+enum QStatus {
+  QUEUED
+  IN_PROGRESS
+  COMPLETED
+}
+
 model QuestionnaireEntry {
   //id is uuid to make it harder to guess
-  id                 String @id @default(uuid())
+  id                 String   @id @default(uuid())
   email              String
   minBudget          Int
   maxBudget          Int
@@ -68,6 +74,8 @@ model QuestionnaireEntry {
   aesthetics         String
   aestheticsDetails  String
   other              String
-  User               User?  @relation(fields: [userId], references: [id]) //optional User
+  User               User?    @relation(fields: [userId], references: [id]) //optional User
   userId             Int?
+  date               DateTime @default(now())
+  status             QStatus  @default(QUEUED)
 }
