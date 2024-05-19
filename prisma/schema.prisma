@@ -47,10 +47,10 @@ model OrderItem {
 // User schema
 model User {
   id                 Int                  @id @default(autoincrement())
-  username           String
   email              String               @unique
   password           String
-  telephone          String
+  firstName          String?
+  lastName           String?
   orders             Order[]
   questionnaireEntry QuestionnaireEntry[]
 }
