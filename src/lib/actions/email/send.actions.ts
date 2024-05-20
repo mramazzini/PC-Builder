@@ -73,6 +73,7 @@ export const sendAccountConfirmationEmail = async (
     ses.sendEmail(params, async (err, data) => {
       if (err) {
         console.error("Error sending email:", err);
+        console.log(params);
         resolve(false);
       } else {
         console.log("Email sent successfully:", data);
