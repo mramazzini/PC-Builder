@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 export async function verifyEmail(verificationCode: string, email: string) {
-  const templatePath = await createPath("questionnaireEntry.html");
+  const templatePath = await createPath("verifyEmail.html");
   const template = await fs.readFileSync(templatePath, "utf8");
   return template
     .replace("${verificationCode}", verificationCode)
