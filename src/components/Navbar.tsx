@@ -182,7 +182,7 @@ export default function Navbar() {
 
       <div
         role="alert"
-        className={`top-20 left-0 absolute alert alert-info fade-in transition transition-all ease-in-out duration-1000 ${
+        className={`top-20 left-0 pointer-events-none absolute alert alert-info fade-in transition transition-opacity ease-in-out duration-1000 ${
           alert ? "opacity-100" : "opacity-0 "
         }`}
       >

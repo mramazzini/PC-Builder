@@ -1,13 +1,14 @@
 "use server";
 import fs from "fs";
-import path from "path";
 
-export async function verifyEmail(verificationCode: string) {
+export async function verifyEmail(verificationCode: string, email: string) {
   const template = fs.readFileSync(
-    path.resolve(__dirname, "./verifyEmail.html"),
+    "./src/lib/utils/templates/verifyEmail.html",
     "utf8"
   );
-  return template.replace("${verificationCode}", verificationCode);
+  return template
+    .replace("${verificationCode}", verificationCode)
+    .replace("${email}", email);
 }
 
 export async function questionnaireEntryEmail(code: string) {

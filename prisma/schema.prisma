@@ -47,6 +47,9 @@ model OrderItem {
 // User schema
 model User {
   id                 Int                  @id @default(autoincrement())
+  verificationToken  String               @unique @default(uuid())
+  verificationExpiry DateTime             @default(now())
+  verified           Boolean              @default(false)
   email              String               @unique
   password           String
   firstName          String?

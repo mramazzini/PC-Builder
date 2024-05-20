@@ -891,7 +891,7 @@ export default function Page() {
                       const ok = await createQuestionnaireEntry(entry);
                       const emailOk = await sendQuestionnaireEmail(ok);
                       if (emailOk) {
-                        window.location.href = `/status?page=${ok.id}`;
+                        window.location.href = `/status?code=${ok.id}`;
                       } else {
                         alert("An error occurred. Please try again later.");
                         setLoading(false);
