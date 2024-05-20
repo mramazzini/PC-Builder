@@ -10,6 +10,7 @@ export async function verifyEmail(verificationCode: string, email: string) {
     "templates",
     "verifyEmail.html"
   );
+
   const template = fs.readFileSync(templatePath, "utf8");
   return template
     .replace("${verificationCode}", verificationCode)
@@ -25,6 +26,7 @@ export async function questionnaireEntryEmail(code: string) {
     "templates",
     "questionnaireEntry.html"
   );
+  console.log(process.cwd(), templatePath);
   const template = fs.readFileSync(templatePath, "utf8");
   return template.replace("${code}", code);
 }
