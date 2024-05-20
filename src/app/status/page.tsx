@@ -14,7 +14,6 @@ export default function Status() {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="text-center hero-content text-neutral-content">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Request Status</h1>
             <Suspense fallback={<div>Loading...</div>}>
               <StatusBody />
             </Suspense>

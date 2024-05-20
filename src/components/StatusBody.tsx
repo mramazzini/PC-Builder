@@ -48,7 +48,7 @@ const StatusBody = () => {
   ) : (
     //No confirmation code available - request confirmation code
     <div className="bg-base-100 p-8 rounded-box mt-8 border border-accent">
-      <h2 className="text-2xl font-bold text-center">Request status</h2>
+      <h1 className="mb-5 text-5xl font-bold">Request Status</h1>
       <div className="divider "></div>
       <p className="text-center mt-4">
         Please enter your confirmation code to check the status of your request
