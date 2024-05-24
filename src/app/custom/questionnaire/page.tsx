@@ -225,17 +225,22 @@ export default function Page() {
       <div className="min-h-screen bg-base-200 flex py-32 flex-col items-center ">
         <div className="hero-overlay bg-opacity-60"></div>
         <form className="w-3/4 bg-base-300 p-10 border border-secondary rounded-3xl">
-          <h1 className="text-5xl font-bold text-center ">
+          <h1 className="text-2xl md:text-5xl font-bold text-center ">
             Make the perfect build!
           </h1>
+          <div className="divider md:hidden" />
           <p className="py-6 text-center">
             Once you complete the form, we will begin creating a PC build
             catered to your specific needs. We will contact you with a quote
             within 24 hours.
           </p>
-          <div className="divider">
-            <h2 className="text-3xl font-bold text-center">Your Information</h2>
+          <div className="divider md:hidden" />
+          <div className="md:divider">
+            <h2 className="text-lg md:text-3xl font-bold text-center">
+              Your Information
+            </h2>
           </div>
+          <div className="divider md:hidden" />
 
           <div className="form-row flex flex-row justify-between pb-6">
             <label className="form-control w-full max-w-xs">
@@ -249,12 +254,17 @@ export default function Page() {
                 placeholder="Enter email"
               />
             </label>
-            <label className="form-control w-full max-w-xs">
+            <label className="form-control w-full max-w-xs md:ml-4">
               <div className="label">
-                <span className="label-text">Minimum Budget</span>
-                <span className="label-text">Maximum Budget</span>
+                <span className="label-text hidden md:flex">
+                  Minimum Budget
+                </span>
+                <span className="label-text hidden md:flex">
+                  Maximum Budget
+                </span>
+                <span className="label-text md:hidden">Budget</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between ">
                 <input
                   value={`$ ${data.minBudget}`}
                   onChange={(e) => handleBudgetChange(e, true)}
@@ -273,9 +283,13 @@ export default function Page() {
               </div>
             </label>
           </div>
-          <div className="divider">
-            <h2 className="text-3xl font-bold text-center">Your Preferences</h2>
+          <div className="divider md:hidden" />
+          <div className="md:divider">
+            <h2 className="text-lg md:text-3xl font-bold text-center">
+              Your Preferences
+            </h2>
           </div>
+          <div className="divider md:hidden" />
           <p className="py-6 text-center">
             Please select the options that best suit your needs.{" "}
             <span className="font-bold">
@@ -287,10 +301,11 @@ export default function Page() {
           <div className="form-row  w-full">
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-lg md:text-xl  mb-4">
                   What will you use the PC for?
                 </span>
               </div>
+
               <ul className="flex flex-col ">
                 <div className="form-control">
                   <label className="cursor-pointer label">
@@ -384,10 +399,11 @@ export default function Page() {
                 </div>
               </ul>
             </label>
+            <div className="divider md:hidden" />
             <div className="divider divider-horizontal" />
             <label className="form-control grow">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-xl  mb-4">
                   Describe any other activities you plan on using your PC for.
                 </span>
               </div>
@@ -408,7 +424,7 @@ export default function Page() {
             {/* Performance specifications */}
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-xl  mb-4">
                   What performance specifications are you looking for?
                 </span>
               </div>
@@ -547,10 +563,11 @@ export default function Page() {
                 </div>
               </ul>
             </label>
+            <div className="divider md:hidden" />
             <div className="divider divider-horizontal " />
             <label className="form-control grow">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-xl mb-4">
                   Please describe any other performance requirements you have.
                 </span>
               </div>
@@ -571,7 +588,7 @@ export default function Page() {
             {/* Aesthetic preferences */}
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-xl  mb-4">
                   What aesthetic preferences do you have?
                 </span>
               </div>
@@ -650,10 +667,11 @@ export default function Page() {
                 </div>
               </ul>
             </label>
+            <div className="divider md:hidden" />
             <div className="divider divider-horizontal" />
             <label className="form-control grow">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-xl  mb-4">
                   Please describe any other aesthetic preferences you have.
                 </span>
               </div>
@@ -674,7 +692,7 @@ export default function Page() {
           <div className="form-row">
             <label className="form-control grow">
               <div className="label">
-                <span className="label-text font-bold text-xl">
+                <span className="label-text font-bold text-xl mb-4">
                   Any other preferences you have?
                 </span>
               </div>
@@ -715,15 +733,15 @@ export default function Page() {
                 ✕
               </button>
             </form>
-            <h1 className="text-3xl font-bold text-center">
+            <h1 className="text-xl md:text-3xl font-bold text-center">
               Confirm Submission
             </h1>
-            <h2 className="text-xl font-bold text-center">
+            <h2 className="hidden md:flex md:text-xl font-bold text-center">
               Please review your submission before confirming.
             </h2>
             <div className="divider" />
             <div className="form-row flex flex-row justify-between pb-6">
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full md:max-w-xs">
                 <div className="label">
                   <span className="label-text">Email</span>
                 </div>
@@ -731,7 +749,7 @@ export default function Page() {
                   {data.email}
                 </p>
               </div>
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full md:max-w-xs">
                 <div className="label">
                   <span className="label-text">Budget</span>
                 </div>
@@ -743,9 +761,9 @@ export default function Page() {
             </div>
             <div className="divider" />
             <div className="form-row  w-full">
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full md:max-w-xs">
                 <div className="label">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     This PC will be used for:
                   </span>
                 </div>
@@ -761,10 +779,15 @@ export default function Page() {
                   })}
                 </ul>
               </div>
-              <div className="divider divider-horizontal" />
-              <div className="form-control grow">
+              <div className="divider md:divider-horizontal" />
+
+              <div
+                className={`form-control grow w-full md:w-auto  ${
+                  data.otherUsage ? "" : "hidden"
+                }`}
+              >
                 <div className="label px-0">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     Other activities it will be used for:
                   </span>
                 </div>
@@ -775,9 +798,9 @@ export default function Page() {
             </div>
             <div className="divider" />
             <div className="form-row  justify-between">
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full md:max-w-xs">
                 <div className="label ">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     Performance Specifications:
                   </span>
                 </div>
@@ -793,10 +816,14 @@ export default function Page() {
                   })}
                 </ul>
               </div>
-              <div className="divider divider-horizontal " />
-              <div className="form-control grow">
+              <div className="divider md:divider-horizontal" />
+              <div
+                className={`form-control grow w-full md:w-auto ${
+                  data.otherPerformance ? "" : "hidden"
+                }`}
+              >
                 <div className="label px-0">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     Other performance requirements:
                   </span>
                 </div>
@@ -807,9 +834,9 @@ export default function Page() {
             </div>
             <div className="divider" />
             <div className="form-row  justify-between">
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full md:max-w-xs">
                 <div className="label p-0">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     Aesthetic Preferences:
                   </span>
                 </div>
@@ -825,10 +852,14 @@ export default function Page() {
                   })}
                 </ul>
               </div>
-              <div className="divider divider-horizontal" />
-              <div className="form-control grow">
+              <div className="divider md:divider-horizontal" />
+              <div
+                className={`form-control grow w-full md:w-auto ${
+                  data.otherAesthetic ? "" : "hidden"
+                }`}
+              >
                 <div className="label px-0">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     Other aesthetic preferences:
                   </span>
                 </div>
@@ -840,9 +871,13 @@ export default function Page() {
 
             <div className="divider" />
             <div className="form-row">
-              <div className="form-control grow">
+              <div
+                className={`form-control w-full md:w-auto md:grow ${
+                  data.other ? "" : "hidden"
+                }`}
+              >
                 <div className="label">
-                  <span className="label-text font-bold text-xl">
+                  <span className="label-text font-bold text-lg md:text-xl">
                     Other preferences:
                   </span>
                 </div>
@@ -851,7 +886,7 @@ export default function Page() {
                 </p>
               </div>
             </div>
-            <div className="divider" />
+            <div className={`divider ${data.other ? "" : "hidden"}`} />
             {/* Agree to terms */}
             <div className="form-row">
               <div className="form-control">

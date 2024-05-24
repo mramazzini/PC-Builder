@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { destroySession, verifyToken } from "../lib/utils/auth";
 import Link from "next/link";
+import BodyWrapper from "./BodyWrapper";
 
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,7 +29,7 @@ export default function Navbar() {
     window.location.reload();
   };
   return (
-    <div className="navbar bg-base-100 fixed z-50">
+    <div className="navbar bg-base-100 fixed z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -82,11 +83,16 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl py-1" href="/">
+        <a className="btn btn-ghost text-xl py-1 hidden md:flex" href="/">
           {/*Logo svg*/}
           <img src="/logo-no-background.svg" alt="Logo" className="h-full" />
         </a>
       </div>
+      <a className="btn btn-ghost text-xl py-1 md:hidden" href="/">
+        {/*Logo svg*/}
+        <img src="/logo-icon.svg" alt="Logo" className="h-full" />
+      </a>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li onClick={handleClick}>
@@ -175,7 +181,7 @@ export default function Navbar() {
           </div>
         ) : (
           <a className="btn" href="/login">
-            Login - Signup
+            Login
           </a>
         )}
       </div>
