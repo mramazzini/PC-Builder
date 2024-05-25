@@ -26,14 +26,14 @@ export default function Rating({
           <input
             type="radio"
             name={name}
-            className="bg-green-500 mask mask-star-2 mask-half-1"
+            className="bg-yellow-400 mask mask-star-2 mask-half-1"
             disabled
             checked={finalRating === value - 0.5}
           />
           <input
             type="radio"
             name={name}
-            className="bg-green-500 mask mask-star-2 mask-half-2"
+            className="bg-yellow-400 mask mask-star-2 mask-half-2"
             disabled
             checked={finalRating === value}
           />
