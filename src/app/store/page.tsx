@@ -9,7 +9,7 @@ import { Item } from "@prisma/client";
 import Link from "next/link";
 import Rating from "@/src/components/Rating";
 //store page
-export const Home = () => {
+export default function Home() {
   const [search, setSearch] = useState("");
   const [items, setItems] = useState<Item[]>([]);
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
@@ -93,6 +93,4 @@ export const Home = () => {
       </div>
     </BodyWrapper>
   );
-};
-
-export default Home;
+}
