@@ -44,7 +44,7 @@ export default function Home() {
   };
   return (
     <main>
-      <BodyWrapper>
+      <BodyWrapper skip>
         <div
           className="hero min-h-screen"
           style={{

@@ -16,11 +16,29 @@ datasource db {
 
 // Describes a single item in inventory 
 model Item {
-  id        Int         @id @default(autoincrement())
-  itemName  String
-  quantity  Int
-  price     Float
-  OrderItem OrderItem[]
+  id             Int         @id @default(autoincrement())
+  name           String
+  quantity       Int // number of items in stock
+  amountSold     Int         @default(0)
+  price          Float
+  description    String?
+  category       String
+  manufacturer   String?
+  sku            String      @unique
+  imageUrl       String?
+  dateAdded      DateTime    @default(now())
+  warrantyPeriod Int? // in months
+  ratings        Float? // average rating
+  reviews        Review[]
+  OrderItem      OrderItem[]
+}
+
+model Review {
+  id      Int    @id @default(autoincrement())
+  content String
+  rating  Int // rating out of 5
+  itemId  Int
+  Item    Item   @relation(fields: [itemId], references: [id])
 }
 
 // Describes a single order made by a user 

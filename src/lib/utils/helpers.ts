@@ -46,3 +46,19 @@ export const validateSecureString = (
   }
   return AuthResult.Success;
 };
+
+export function searchItems<T>(
+  items: T[],
+  searchFields: (keyof T)[],
+  query: string
+): T[] {
+  if (query.trim() === "") {
+    return [];
+  }
+
+  return items.filter((item) =>
+    searchFields.some((field) =>
+      String(item[field]).toLowerCase().includes(query.toLowerCase())
+    )
+  );
+}

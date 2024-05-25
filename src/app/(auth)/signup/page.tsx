@@ -3,7 +3,7 @@ import SignupForm from "@/src/components/SignupForm";
 import Link from "next/link";
 export default function Home() {
   return (
-    <BodyWrapper>
+    <BodyWrapper skip>
       <main>
         <div
           className="hero min-h-screen"

@@ -75,7 +75,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/store>"
+                href="/store"
                 className="border border-base-100 hover:border-primary"
               >
                 Buy Parts
@@ -118,7 +118,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/store>"
+              href="/store"
               className="border border-base-100 hover:border-primary"
             >
               Buy Parts
